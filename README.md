@@ -6,6 +6,5 @@ My Ludum Dare 25 entry called 10 seconds
 
 Copyright © 2013 Mathias Olsson
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the Apache License Version 2.0.
 
