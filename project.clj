@@ -15,7 +15,7 @@
               {
                :dev
                {;; clojurescript source code path
-                :source-paths ["src/brepl" "src/cljs"]
+                :source-paths ["src/cljs/brepl" "src/cljs/game"]
 
                 ;; Google Closure Compiler options
                 :compiler {;; the name of emitted JS script file
