@@ -24538,13 +24538,13 @@ ten_seconds.game.initial_state = function initial_state() {
 };
 ten_seconds.game.render_level = function render_level(context, level) {
   var obj_list = (new cljs.core.Keyword("\ufdd0:object-list")).call(null, level);
-  var seq__70151 = cljs.core.seq.call(null, cljs.core.reverse.call(null, obj_list));
-  var chunk__70152 = null;
-  var count__70153 = 0;
-  var i__70154 = 0;
+  var seq__73740 = cljs.core.seq.call(null, cljs.core.reverse.call(null, obj_list));
+  var chunk__73741 = null;
+  var count__73742 = 0;
+  var i__73743 = 0;
   while(true) {
-    if(i__70154 < count__70153) {
-      var obj = cljs.core._nth.call(null, chunk__70152, i__70154);
+    if(i__73743 < count__73742) {
+      var obj = cljs.core._nth.call(null, chunk__73741, i__73743);
       if(cljs.core._EQ_.call(null, "circle", (new cljs.core.Keyword("\ufdd0:type")).call(null, obj))) {
         ten_seconds.canvas.render_circle.call(null, context, obj)
       }else {
@@ -24557,32 +24557,32 @@ ten_seconds.game.render_level = function render_level(context, level) {
           }
         }
       }
-      var G__70155 = seq__70151;
-      var G__70156 = chunk__70152;
-      var G__70157 = count__70153;
-      var G__70158 = i__70154 + 1;
-      seq__70151 = G__70155;
-      chunk__70152 = G__70156;
-      count__70153 = G__70157;
-      i__70154 = G__70158;
+      var G__73744 = seq__73740;
+      var G__73745 = chunk__73741;
+      var G__73746 = count__73742;
+      var G__73747 = i__73743 + 1;
+      seq__73740 = G__73744;
+      chunk__73741 = G__73745;
+      count__73742 = G__73746;
+      i__73743 = G__73747;
       continue
     }else {
-      var temp__4092__auto__ = cljs.core.seq.call(null, seq__70151);
+      var temp__4092__auto__ = cljs.core.seq.call(null, seq__73740);
       if(temp__4092__auto__) {
-        var seq__70151__$1 = temp__4092__auto__;
-        if(cljs.core.chunked_seq_QMARK_.call(null, seq__70151__$1)) {
-          var c__3075__auto__ = cljs.core.chunk_first.call(null, seq__70151__$1);
-          var G__70159 = cljs.core.chunk_rest.call(null, seq__70151__$1);
-          var G__70160 = c__3075__auto__;
-          var G__70161 = cljs.core.count.call(null, c__3075__auto__);
-          var G__70162 = 0;
-          seq__70151 = G__70159;
-          chunk__70152 = G__70160;
-          count__70153 = G__70161;
-          i__70154 = G__70162;
+        var seq__73740__$1 = temp__4092__auto__;
+        if(cljs.core.chunked_seq_QMARK_.call(null, seq__73740__$1)) {
+          var c__3075__auto__ = cljs.core.chunk_first.call(null, seq__73740__$1);
+          var G__73748 = cljs.core.chunk_rest.call(null, seq__73740__$1);
+          var G__73749 = c__3075__auto__;
+          var G__73750 = cljs.core.count.call(null, c__3075__auto__);
+          var G__73751 = 0;
+          seq__73740 = G__73748;
+          chunk__73741 = G__73749;
+          count__73742 = G__73750;
+          i__73743 = G__73751;
           continue
         }else {
-          var obj = cljs.core.first.call(null, seq__70151__$1);
+          var obj = cljs.core.first.call(null, seq__73740__$1);
           if(cljs.core._EQ_.call(null, "circle", (new cljs.core.Keyword("\ufdd0:type")).call(null, obj))) {
             ten_seconds.canvas.render_circle.call(null, context, obj)
           }else {
@@ -24595,14 +24595,14 @@ ten_seconds.game.render_level = function render_level(context, level) {
               }
             }
           }
-          var G__70163 = cljs.core.next.call(null, seq__70151__$1);
-          var G__70164 = null;
-          var G__70165 = 0;
-          var G__70166 = 0;
-          seq__70151 = G__70163;
-          chunk__70152 = G__70164;
-          count__70153 = G__70165;
-          i__70154 = G__70166;
+          var G__73752 = cljs.core.next.call(null, seq__73740__$1);
+          var G__73753 = null;
+          var G__73754 = 0;
+          var G__73755 = 0;
+          seq__73740 = G__73752;
+          chunk__73741 = G__73753;
+          count__73742 = G__73754;
+          i__73743 = G__73755;
           continue
         }
       }else {
@@ -24673,8 +24673,8 @@ ten_seconds.game.request_animation_frame = function() {
       if(cljs.core.truth_(or__3943__auto____$2)) {
         return or__3943__auto____$2
       }else {
-        return function(p1__70167_SHARP_) {
-          return timeout(10, p1__70167_SHARP_.call(null))
+        return function(p1__73756_SHARP_) {
+          return timeout(10, p1__73756_SHARP_.call(null))
         }
       }
     }
@@ -24719,20 +24719,20 @@ ten_seconds.game.click = function click(event) {
       return event.layerY
     }
   }();
-  return cljs.core.swap_BANG_.call(null, ten_seconds.game.clicks, function(p1__70168_SHARP_) {
-    return cljs.core.conj.call(null, p1__70168_SHARP_, cljs.core.PersistentArrayMap.fromArray(["\ufdd0:x", x, "\ufdd0:y", y], true))
+  return cljs.core.swap_BANG_.call(null, ten_seconds.game.clicks, function(p1__73757_SHARP_) {
+    return cljs.core.conj.call(null, p1__73757_SHARP_, cljs.core.PersistentArrayMap.fromArray(["\ufdd0:x", x, "\ufdd0:y", y], true))
   })
 };
 ten_seconds.game.init = function init() {
   document.write("Ludum Dare 27 entry called 10 seconds by Mathias Olsson");
   document.write("<div><canvas id='surface'/></div>");
-  var canvas_70170 = document.getElementById("surface");
-  canvas_70170.width = ten_seconds.game.canvas_width;
-  canvas_70170.height = ten_seconds.game.canvas_height;
-  canvas_70170.addEventListener("click", function(p1__70169_SHARP_) {
-    return ten_seconds.game.click.call(null, p1__70169_SHARP_)
+  var canvas_73759 = document.getElementById("surface");
+  canvas_73759.width = ten_seconds.game.canvas_width;
+  canvas_73759.height = ten_seconds.game.canvas_height;
+  canvas_73759.addEventListener("click", function(p1__73758_SHARP_) {
+    return ten_seconds.game.click.call(null, p1__73758_SHARP_)
   }, false);
-  ten_seconds.audio.load_audio.call(null, "/audio/ludumdare10seconds.ogg", "music");
+  ten_seconds.audio.load_audio.call(null, "audio/ludumdare10seconds.ogg", "music");
   return ten_seconds.game.animate.call(null, ten_seconds.game.initial_state.call(null))
 };
 window.onload = ten_seconds.game.init;
