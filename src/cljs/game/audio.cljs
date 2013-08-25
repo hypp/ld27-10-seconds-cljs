@@ -7,16 +7,17 @@
 
 (def audio-context (if window/webkitAudioContext
                      (new window/webkitAudioContext)
-                     (new window/AudioContext)
+                     window/AudioContext
                      )
 )
 
 
 
-(defn play-sound [audio-buffer]
+(defn play-sound [audio-buffer loop]
   (let [source (.createBufferSource audio-context)]
   	(.connect source (.-destination audio-context))
   	(set! (.-buffer source) audio-buffer)
+  	(set! (.-loop source) loop)
   	(.start source 0)
   )
 )
@@ -25,7 +26,7 @@
   (.log js/console "play-by-name")
   (doseq [audio @loaded-audio]
      (.log js/console (:name audio))
-;     (play-sound (:buffer audio))
+     (play-sound (:buffer audio) true)
   ) 
 )
 
@@ -52,7 +53,8 @@
   			(let [buffer (async/<! decoded-chan)];
   				(.log js/console "Decoded chan")
   				(swap! loaded-audio (fn [la] (cons {:buffer buffer :name name} la)))
-  				(play-by-name "mathias")
+  				; TODO I really don't want to play it here...
+  				(play-by-name name)
   			)
   		)
 		  			  		

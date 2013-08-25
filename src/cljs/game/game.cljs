@@ -114,7 +114,7 @@
     (.addEventListener canvas "click" #(click %) false)
   )
   
-  (audio/load-audio "audio/villain.ogg" "music")
+  (audio/load-audio "/audio/ludumdare10seconds.ogg" "music")
   (animate (initial-state))
 )
   

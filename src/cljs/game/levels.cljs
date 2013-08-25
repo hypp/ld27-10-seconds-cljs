@@ -129,11 +129,12 @@
 
 (defn mutate-object-list [org-obj-list]
 	"Randomly replaces or changes objects in the list. The first object is always changed"
-;	(cons (change-object (first org-obj-list)) (map leave-replace-change (rest org-obj-list)))
-	(cons (replace-object) (rest org-obj-list))
+	(cons (replace-object) (map leave-replace-change (rest org-obj-list)))
+;	(cons (replace-object) (rest org-obj-list))
 )
 
-(def difficulty (atom 1.0))
+(def initial-difficulty 2.0)
+(def difficulty (atom initial-difficulty))
 
 (defmulti on-animate :state)
 (defmethod on-animate "first" [level]
@@ -187,9 +188,10 @@
 		seconds (int (/ diff 1000))
 		display (- 10 seconds)
 		obj-list (:object-list level)
+		changed (filter #(contains? % :changed) obj-list)
 		new-obj-list (cons (assoc (first obj-list) :msg (str display " seconds.")) (rest obj-list))]
 ;		(.log js/console "level1 animate solve" diff display)
-		(if (>= 0 display) 
+		(if (or (>= 0 display) (= 0 (count changed))) 
 			(assoc level :state "check" :object-list new-obj-list)
 			(assoc level :object-list new-obj-list)
 		)
@@ -206,7 +208,10 @@
 		new-obj-list (cons (assoc (first obj-list) :msg (str "10 seconds. Game Over. You missed some changes. ")) (rest obj-list))]
 ;		(.log js/console "level1 animate show" diff display)
 		(if (>= 0 display) 
-			(assoc level :game-over true)
+			(do
+				(swap! difficulty #(+ 0 initial-difficulty))
+				(assoc level :game-over true)
+			)
 			(assoc level :object-list new-obj-list)
 		)
 	)	
