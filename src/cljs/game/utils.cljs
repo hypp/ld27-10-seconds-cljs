@@ -69,5 +69,23 @@
 	(remove #(find-value % list-b) list-a)
 )
 
+(defn hsv-to-rgb [h s v]
+  (map #(int (* 255 %)) ; Syntactic sugar for fn [x] (* 255 x)
+	  (let [u (int (/ h 60.0))
+	        f (- (/ h 60.0) u)
+	        p (* v (- 1 s))
+	        q (* v (- 1 (* s f)))
+	        t (* v (- 1 (* s (- 1 f))))]
+	        (condp = u
+	           0 (list v t q)
+	           1 (list q v p) 
+	           2 (list p v t)
+	           3 (list p q v) 
+	           4 (list t p v) 
+	           5 (list v p q)
+	        )
+        )
+    )
+)
 
 

@@ -10,14 +10,33 @@
 )
 
 (defn render-circle [context circle]
-    (set! (.-fillStyle context) (str "rgba(" (:color circle) "," (:alpha circle) ")"))
+    (set! (.-fillStyle context) (str "rgba(" (string/join "," (:color circle)) "," (:alpha circle) ")"))
     (.beginPath context)
     (.arc context (:x circle) (:y circle) (:radius circle) 0 (* 2 Math/PI) true)
-    (.closePath context)
+;    (.closePath context)
 	(.fill context)
+
+	(if (and (contains? circle :changed) (contains? circle :outline))
+		(do
+			(set! (.-lineWidth context) 5);
+			(set! (.-strokeStyle context) "#ffffff");
+	      	(.stroke context);
+		)
+	)
 )
 
 (defn render-rect [context rect]
-    (set! (.-fillStyle context) (str "rgba(" (:color rect) "," (:alpha rect) ")"))
-    (.fillRect context (:left rect) (:top rect) (:width rect) (:height rect))
+    (set! (.-fillStyle context) (str "rgba(" (string/join "," (:color rect)) "," (:alpha rect) ")"))
+    (.beginPath context)
+    (.rect context (:left rect) (:top rect) (:width rect) (:height rect))
+	(.fill context)
+    
+	(if (and (contains? rect :changed) (contains? rect :outline))
+		(do
+			(set! (.-lineWidth context) 5);
+			(set! (.-strokeStyle context) "#ffffff");
+	      	(.stroke context);
+		)
+	)
+
 )
