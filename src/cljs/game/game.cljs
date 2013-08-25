@@ -106,15 +106,33 @@
 )
 
 (defn init []
-  (.write js/document "Ludum Dare 27 entry called 10 seconds by Mathias Olsson")
+  (.write js/document "<p>Ludum Dare 27 entry called 10 seconds by Mathias Olsson</p>")
+  (.write js/document "<p>Tested on OSX with Safari 6.0.5, Chrome 29.0.1547.57 and Firefox 23.0.1.</p>")
+  (.write js/document "<p>Sound is not working in Firefox</p>")
   (.write js/document "<div><canvas id='surface'/></div>")
+  (.write js/document "<p><a href='https://github.com/hypp/ld27-10-seconds-cljs'>Source</a></p>")
   (let [canvas (.getElementById js/document "surface")]
     (set! (.-width canvas) canvas-width)
     (set! (.-height canvas) canvas-height)
     (.addEventListener canvas "click" #(click %) false)
   )
   
-  (audio/load-audio "audio/ludumdare10seconds.ogg" "music")
+  (try
+	  (let [audio-test (new js/Audio)
+  			ogg (.canPlayType audio-test "audio/ogg; codecs='vorbis'")
+  			mp3 (.canPlayType audio-test "audio/mpeg;")
+  			wav (.canPlayType audio-test "audio/wav; codecs='1'")]
+  			(.log js/console "ogg" ogg "mp3" mp3 "wav" wav)
+  			(cond
+  				(or (= ogg "maybe") (= ogg "probably")) (audio/load-audio "audio/ludumdare10seconds.ogg" "music")
+	  			(or (= mp3 "maybe") (= mp3 "probably")) (audio/load-audio "audio/ludumdare10seconds.mp3" "music")
+	  			(or (= wav "maybe") (= wav "probably")) (audio/load-audio "audio/ludumdare10seconds.wav" "music")
+	  		)
+	  	)
+	(catch js/Object e
+       (.log js/console e))
+    )
+
   (animate (initial-state))
 )
   

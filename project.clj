@@ -24,7 +24,7 @@
                 :compiler {;; the name of emitted JS script file
                            :output-to "resources/public/js/10_seconds.js"
 
-                           :optimizations :whitespace
+                           :optimizations :simple
 
                            ;; prettyfying emitted JS
                            :pretty-print true}

@@ -18,7 +18,9 @@
   	(.connect source (.-destination audio-context))
   	(set! (.-buffer source) audio-buffer)
   	(set! (.-loop source) loop)
-  	(.start source 0)
+  	; start does not work in Safari. Use old notOn instead
+;  	(.start source 0)
+  	(.noteOn source 0)
   )
 )
 
