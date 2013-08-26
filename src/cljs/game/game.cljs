@@ -98,8 +98,9 @@
 
 (defn click [event]
     (let [target (.-target event)
-          x (or (.-offsetX event) (.-layerX event))
-          y (or (.-offsetY event) (.-layerY event))]
+          bounds (.getBoundingClientRect target)
+          x (- (.-clientX event) (.-left bounds))
+          y (- (.-clientY event) (.-top bounds))]
 ;          (.log js/console "x:" x "y:" y "target:" target)
           (swap! clicks #(conj % {:x x :y y}))
     )
@@ -109,7 +110,7 @@
   (.write js/document "<p>Ludum Dare 27 entry called 10 seconds by Mathias Olsson</p>")
   (.write js/document "<p>Tested on OSX with Safari 6.0.5, Chrome 29.0.1547.57 and Firefox 23.0.1.</p>")
   (.write js/document "<p>Sound is not working in Firefox</p>")
-  (.write js/document "<div><canvas id='surface'/></div>")
+  (.write js/document "<div><canvas id='surface'></canvas></div>")
   (.write js/document "<p><a href='https://github.com/hypp/ld27-10-seconds-cljs'>Source</a></p>")
   (let [canvas (.getElementById js/document "surface")]
     (set! (.-width canvas) canvas-width)

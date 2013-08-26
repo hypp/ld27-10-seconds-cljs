@@ -14463,21 +14463,16 @@ ten_seconds.game.animate = function animate(b) {
   })
 };
 ten_seconds.game.click = function(a) {
-  var b;
-  var c = a.offsetX;
-  b = cljs.core.truth_(c) ? c : a.layerX;
-  var d;
-  c = a.offsetY;
-  d = cljs.core.truth_(c) ? c : a.layerY;
+  var b = a.target.getBoundingClientRect(), c = a.clientX - b.left, d = a.clientY - b.top;
   return cljs.core.swap_BANG_.call(null, ten_seconds.game.clicks, function(a) {
-    return cljs.core.conj.call(null, a, cljs.core.PersistentArrayMap.fromArray(["\ufdd0:x", b, "\ufdd0:y", d], !0))
+    return cljs.core.conj.call(null, a, cljs.core.PersistentArrayMap.fromArray(["\ufdd0:x", c, "\ufdd0:y", d], !0))
   })
 };
 ten_seconds.game.init = function() {
   document.write("<p>Ludum Dare 27 entry called 10 seconds by Mathias Olsson</p>");
   document.write("<p>Tested on OSX with Safari 6.0.5, Chrome 29.0.1547.57 and Firefox 23.0.1.</p>");
   document.write("<p>Sound is not working in Firefox</p>");
-  document.write("<div><canvas id='surface'/></div>");
+  document.write("<div><canvas id='surface'></canvas></div>");
   document.write("<p><a href='https://github.com/hypp/ld27-10-seconds-cljs'>Source</a></p>");
   var a = document.getElementById("surface");
   a.width = ten_seconds.game.canvas_width;
